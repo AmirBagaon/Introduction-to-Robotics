@@ -1,0 +1,7 @@
+<launch>
+<param name="/use_sim_time" value="true" />
+<include file="$(find turtlebot_gazebo)/launch/turtlebot_world.launch"/>
+<node name="stopper" pkg="wander_bot" type="stopper" output="screen">
+<param name="forward_speed" type="double" value="0.5"/>
+</node>
+</launch>

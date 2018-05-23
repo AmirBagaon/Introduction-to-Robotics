@@ -1,0 +1,11 @@
+<launch>
+	<arg name="map_file" default="$(find turtlebot_gazebo)/maps/playground.yaml"/>
+	<param name="starting_location" value="0,0"/>
+	<param name="robot_size" value="0.35"/>
+
+	<!--  Load the map  -->
+		<node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)"/>
+	
+	<!--  Launch navigation_planner node   -->
+	<node name="coverage_node" pkg="coverage" type="coverage_node" output="screen" cwd="node"/>
+</launch>

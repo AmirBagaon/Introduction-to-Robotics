@@ -1,0 +1,17 @@
+<launch> 
+<param name="/use_sim_time" value="true"/> 
+<param name="robot_size" value="0.35"/> 
+<arg name="map_file" default="$(find turtlebot_gazebo)/maps/playground.yaml"/> 
+ 
+<!-- Publish a static transformation between /odom and /map --> 
+<node name="tf" pkg="tf" type="static_transform_publisher" args="0 0 0 0 0 0 /map /odom 100"/> 
+
+<!-- Launch turtle bot world --> 
+<include file="$(find turtlebot_gazebo)/launch/turtlebot_world.launch"/> 
+
+ <!-- Launch navigation stack with amcl -->
+  <include file="$(find turtlebot_gazebo)/launch/amcl_demo.launch"/>
+
+<!-- Launch coverage node --> 
+<node name="coverage_4_node" pkg="coverage_4" type="coverage_4_node" output="screen" cwd="node"/> 
+</launch> 
